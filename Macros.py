@@ -5,33 +5,33 @@ STRATEGY_TYPES = ["Mask", "Dynamic Mask", "No Mask"]
 LOCAL_MODELS = ["Basic Model", "Fine for not waering masks", "Subsidies for wearing masks", "Low Medical Level", "High Medical Level"]
 
 BASIC_MODEL_PAYOFF = np.array([
-        [-1, -20, -10], # Mask 
-        [ -30, -90, -60], # No Mask
-        [-15, -47, -31] # Dynamic Mask
+        [-1, -5.7, -3.35], # Mask 
+        [ -4.7, -88.36, -44.18], # No Mask
+        [-2.35, -44.18, -22.09] # Dynamic Mask
 ])
 
 FINES_MODEL_PAYOFF = np.array([
-        [-1, -20, -10], # Mask 
-        [ -40, -100, -70], # No Mask
-        [-25, -57, -41] # Dynamic Mask
+        [-1, -5.7, -3.35], # Mask 
+        [ -14.7, -98.36, -54.18], # No Mask
+        [-12.35, -54.18, -32.09] # Dynamic Mask
 ])
 
 SUBSIDIES_MODEL_PAYOFF = np.array([
-        [5, -15, -5], # Mask 
-        [ -30, -90, -60], # No Mask
-        [-15, -47, -31] # Dynamic Mask
+        [4, -0.7, -1.65], # Mask 
+        [ -14.7, -98.36, -54.18], # No Mask
+        [-12.35, -54.18, -32.09] # Dynamic Mask
 ])
 
 LOW_MED_MODEL_PAYOFF = np.array([
-        [-1, -40, -20], # Mask 
-        [ -60, -180, -120], # No Mask
-        [-30, -94, -62] # Dynamic Mask
+        [-1.38, -8.05, -4.53], # Mask 
+        [ -7.05, -132.54, -66.27], # No Mask
+        [-3.53, -66.27, -33.14] # Dynamic Mask
 ])
 
 HIGH_MED_MODEL_PAYOFF = np.array([
-        [-1, -10, -5], # Mask 
-        [ -15, -45, -30], # No Mask
-        [-5.5, -23.5, -15.5] # Dynamic Mask
+        [-1, -4.76, -2.88], # Mask 
+        [ -3.76, -70.69, -35.34], # No Mask
+        [-1.88, -35.34, -17.67] # Dynamic Mask
 ])
 
 LOCAL_MODEL_PAYOFF_DICT = {
