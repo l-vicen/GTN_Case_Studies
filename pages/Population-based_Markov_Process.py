@@ -12,7 +12,7 @@ beta = st.number_input('Insert Beta Factor', value = 0.5)
 mu = 1/population
 selected_payoff = st.selectbox("Select the desired payoff matrix representing a local model.", Macros.LOCAL_MODELS)
 
-if (selected_payoff != None): 
+if (selected_payoff != "None"): 
     A = Macros.LOCAL_MODEL_PAYOFF_DICT[selected_payoff]
     st.markdown("## Payoff Matrix")
     st.write(A)
