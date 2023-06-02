@@ -49,18 +49,21 @@ beta = 1.0
 
 # Define which strategies can be present in the population
 strategies = [Cooperator(), Defector(), Random()]
-# define the game
+
+# Define the game
 payoffs = np.array([[1, 3],[0, 2]])
-game = egt.games.NormalFormGame(100, payoffs, strategies)
+game = egt.games.NormalFormGame(100000, payoffs, strategies)
+
 # Define the parameters of the population and instantiate the evolver
 evolver = egt.analytical.PairwiseComparison(Z, game)
+
 # Calculate the transition and fixation probabilities and the stationary distribution
 transition_matrix,fixation_probabilities = evolver.calculate_transition_and_fixation_matrix_sml(beta)
 stationary_distribution = egt.utils.calculate_stationary_distribution(transition_matrix)
+
 # Plot the invasion diagram
 G = egt.plotting.draw_invasion_diagram([strategy.type().replace("NFGStrategies:", "") for strategy in
 strategies], 1/Z, fixation_probabilities, stationary_distribution)
-
 fig, ax = plt.subplots()
 pos = nx.kamada_kawai_layout(G)
 nx.draw(G,pos, with_labels=True)
