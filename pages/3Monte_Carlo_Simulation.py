@@ -11,9 +11,8 @@ strategies = [egt.behaviors.NormalForm.TwoActions.Cooperator(),
 
 T=4; R=2; P=1; S=0
 A = np.array([
-    [P, T, P],
-    [S, R, S],
-    [T, S, T]
+    [P, T],
+    [S, R]
 ])
 
 strategy_labels = [strategy.type().replace("NFGStrategies::", '') for strategy in strategies]
