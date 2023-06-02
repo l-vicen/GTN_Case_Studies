@@ -7,8 +7,8 @@ import Macros
 st.markdown("# Markov Process: Infinite Population")
 
 st.markdown("## Inputs")
-population = int(st.number_input('Insert Population Size', value=1, key=0))
-beta = st.number_input('Insert Beta Factor', value = 0.5)
+population = int(st.number_input('Insert Population Size', value=100, key=0))
+beta = st.number_input('Insert Beta Factor', value = 1)
 mu = 1/population
 selected_payoff = st.selectbox("Select the desired payoff matrix representing a local model.", Macros.LOCAL_MODELS)
 
@@ -20,11 +20,7 @@ if (selected_payoff != "None"):
     st.markdown("---")
     st.markdown("## Outputs")
     fig, ax = plt.subplots(figsize=(12,10))
-    simplex, gradient_function, game, evolver = plot_pairwise_comparison_rule_dynamics_in_simplex_without_roots(payoff_matrix = A, 
-                                                                                                                  group_size = 2, 
-                                                                                                                  population_size = population,
-                                                                                                                  beta = beta,
-                                                                                                                  ax=ax)
+    simplex, gradient_function, game, evolver = plot_pairwise_comparison_rule_dynamics_in_simplex_without_roots(payoff_matrix = A, group_size = 2, population_size = population, beta = beta, ax=ax)
     transitions = evolver.calculate_transition_matrix(beta=beta, mu=mu)
     sd = egt.utils.calculate_stationary_distribution(transitions.transpose())
     plot = (simplex.draw_triangle()
