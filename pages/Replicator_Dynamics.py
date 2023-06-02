@@ -44,11 +44,9 @@ else:
         st.markdown("### Gradients")
         st.write(gradients)
         
-        fig = plt.figure()
-        ax = plot_gradients(gradients[:, 0], xlabel="frequency of hawks")
-        plt.show()
-    
-        st.pyplot(plt.figure())
+        st.pyplot(plot_gradients(gradients[:, 0], xlabel="frequency of masks").get_figure())
+        st.pyplot(plot_gradients(gradients[:, 1], xlabel="frequency of dynamic").get_figure())
+        st.pyplot(plot_gradients(gradients[:, 2], xlabel="frequency of no_masks").get_figure())
 
         st.markdown("---")
         st.markdown("## Outputs")
