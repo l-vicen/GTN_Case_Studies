@@ -7,8 +7,8 @@ LOCAL_MODELS = ["None", "Basic Model", "Fine for not wearing masks", "Subsidies 
 PLAYER_GAMES = ["2-Player Game", "3-Player Game"]
 
 TWO_PLAYER_BASIC_MODEL_PAYOFF = np.array([
-       [-0.5, 2.], # Mask
-       [0., 0] # No Mask
+       [3, 1.5], # Mask
+       [1.5, -3] # No Mask
 ])
 
 BASIC_MODEL_PAYOFF = np.array([

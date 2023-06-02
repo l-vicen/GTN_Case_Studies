@@ -26,8 +26,8 @@ if (selected_X_player_game == "2-Player Game"):
     stability = check_replicator_stability_pairwise_games(roots, A)
 
     # Plot the gradient
-    st.pyplot(plot_gradients(gradients[:, 0], xlabel="frequency of hawks", roots=roots, stability=stability).get_figure())
-    st.pyplot(plot_gradients(gradients[:, 1], xlabel="frequency of doves", roots=roots, stability=stability).get_figure())
+    st.pyplot(plot_gradients(gradients[:, 0], xlabel="frequency of cooperator", roots=roots, stability=stability).get_figure())
+    st.pyplot(plot_gradients(gradients[:, 1], xlabel="frequency of free-rider", roots=roots, stability=stability).get_figure())
 
 else: 
     st.markdown("## Inputs")
@@ -39,14 +39,14 @@ else:
         st.write(A)
 
         gradient_function = lambda x: egt.analytical.replicator_equation_n_player(x, A, group_size=3)
-        gradients = calculate_gradients(np.array((x, 1 - x)).T, gradient_function)
+        gradients_n_players = calculate_gradients(np.array((x, 1 - x)).T, gradient_function)
 
         st.markdown("### Gradients")
-        st.write(gradients)
+        st.write(gradients_n_players)
         
-        st.pyplot(plot_gradients(gradients[:, 0], xlabel="frequency of masks").get_figure())
-        st.pyplot(plot_gradients(gradients[:, 1], xlabel="frequency of dynamic").get_figure())
-        st.pyplot(plot_gradients(gradients[:, 2], xlabel="frequency of no_masks").get_figure())
+        st.pyplot(plot_gradients(gradients_n_players[:, 0], xlabel="frequency of cooperator").get_figure())
+        st.pyplot(plot_gradients(gradients_n_players[:, 1], xlabel="frequency of dynamic_cooperator").get_figure())
+        st.pyplot(plot_gradients(gradients_n_players[:, 2], xlabel="frequency of free-rider").get_figure())
 
         st.markdown("---")
         st.markdown("## Outputs")
