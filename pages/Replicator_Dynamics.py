@@ -45,9 +45,11 @@ else:
         st.write(gradients)
 
         
-        fig, ax = plt.subplots(figsize=(10,8))
-        ax.plot(egt.plotting.plot_gradients(gradients[:, 0], xlabel="frequency of hawks"))
-        st.pyplot(ax.get_figure())
+        fig = plt.figure()
+        ax = egt.plotting.plot_gradients(gradients[:, 0], xlabel="frequency of hawks")
+        plt.show()
+    
+        st.pyplot(plt.get_figure())
 
         st.markdown("---")
         st.markdown("## Outputs")
