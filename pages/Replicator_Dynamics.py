@@ -5,7 +5,7 @@ import egttools as egt
 import Macros
 
 from egttools.analytical.utils import (calculate_gradients, find_roots, check_replicator_stability_pairwise_games)
-from egttools.plotting.simplified import plot_replicator_dynamics_in_simplex,
+from egttools.plotting.simplified import plot_replicator_dynamics_in_simplex
 from egttools.plotting import plot_gradients
 
 st.markdown("# Replicator Dynamics: Infinite Population")
