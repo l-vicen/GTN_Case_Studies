@@ -5,7 +5,8 @@ import egttools as egt
 import Macros
 
 from egttools.analytical.utils import (calculate_gradients, find_roots, check_replicator_stability_pairwise_games)
-from egttools.plotting.simplified import plot_replicator_dynamics_in_simplex
+from egttools.plotting.simplified import plot_replicator_dynamics_in_simplex,
+from egttools.plotting import plot_gradients
 
 st.markdown("# Replicator Dynamics: Infinite Population")
 
@@ -25,9 +26,7 @@ if (selected_X_player_game == "2-Player Game"):
     stability = check_replicator_stability_pairwise_games(roots, A)
 
     # Plot the gradient
-    egt.plotting.plot_gradients(gradients[:, 0], xlabel="frequency of hawks", roots=roots, stability=stability)
-    fig, ax = plt.subplots(figsize=(10,8))
-    st.pyplot(fig)
+    st.pyplot(    plot_gradients(gradients[:, 0], xlabel="frequency of hawks", roots=roots, stability=stability).get_figure())
 
 else: 
     st.markdown("## Inputs")
@@ -43,10 +42,9 @@ else:
 
         st.markdown("### Gradients")
         st.write(gradients)
-
         
         fig = plt.figure()
-        ax = egt.plotting.plot_gradients(gradients[:, 0], xlabel="frequency of hawks")
+        ax = plot_gradients(gradients[:, 0], xlabel="frequency of hawks")
         plt.show()
     
         st.pyplot(plt.figure())
