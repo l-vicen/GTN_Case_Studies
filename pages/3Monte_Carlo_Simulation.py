@@ -16,10 +16,9 @@ A = np.array([
 strategies = [egt.behaviors.NormalForm.TwoActions.Cooperator(), 
               egt.behaviors.NormalForm.TwoActions.Defector(), 
               egt.behaviors.NormalForm.TwoActions.TFT(),
-            #   egt.behaviors.NormalForm.TwoActions.Pavlov(), 
-            #   egt.behaviors.NormalForm.TwoActions.Random(), 
-            #   egt.behaviors.NormalForm.TwoActions.GRIM()]
-]
+              egt.behaviors.NormalForm.TwoActions.Pavlov(), 
+              egt.behaviors.NormalForm.TwoActions.Random(), 
+              egt.behaviors.NormalForm.TwoActions.GRIM()]
 
 strategy_labels = [strategy.type().replace("NFGStrategies::", '') for strategy in strategies]
 st.write(strategy_labels)
@@ -45,9 +44,9 @@ G = egt.plotting.draw_invasion_diagram(strategy_labels,
                                               ax=ax)
 plt.axis('off')
 # plt.show() # display
-# st.pyplot(fig)
-
-fig, ax = plt.subplots()
-pos = nx.kamada_kawai_layout(G)
-nx.draw(G,pos, with_labels=True)
 st.pyplot(fig)
+
+# fig, ax = plt.subplots()
+# pos = nx.kamada_kawai_layout(G)
+# nx.draw(G,pos, with_labels=True)
+# st.pyplot(fig)
