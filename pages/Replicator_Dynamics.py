@@ -44,8 +44,10 @@ else:
         st.markdown("### Gradients")
         st.write(gradients)
 
-        fig_Gradient, ax = egt.plotting.plot_gradients(gradients[:, 0], xlabel="frequency of hawks")
-        st.pyplot(fig_Gradient)
+        
+        fig, ax = plt.subplots(figsize=(10,8))
+        ax.plot(egt.plotting.plot_gradients(gradients[:, 0], xlabel="frequency of hawks"))
+        st.pyplot(ax.get_figure())
 
         st.markdown("---")
         st.markdown("## Outputs")
