@@ -29,7 +29,7 @@ transition_matrix,fixation_probabilities = evolver.calculate_transition_and_fixa
 stationary_distribution = egt.utils.calculate_stationary_distribution(transition_matrix.transpose())
 
 # Plot the invasion diagram
-fig, ax = plt.subplots(figsize=(5, 5), dpi=150)
+fig, ax = plt.subplots(figsize=(3, 3), dpi=150)
 G = egt.plotting.draw_invasion_diagram(strategy_labels,
                                               1/Z, fixation_probabilities, stationary_distribution,
                                               node_size=600, 
