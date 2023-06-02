@@ -20,5 +20,17 @@ strategy_labels = [strategy.type().replace("NFGStrategies::", '') for strategy i
 st.write(strategy_labels)
 
 game = egt.games.NormalFormGame(100, A, strategies)
-
 st.write(game)
+
+Z= 100; beta=1
+evolver = egt.analytical.PairwiseComparison(Z, game)
+st.write(evolver)
+
+transition_matrix,fixation_probabilities = evolver.calculate_transition_and_fixation_matrix_sml(beta)
+st.write("### Transition Matrix")
+st.write(transition_matrix)
+
+st.markdown("### Fixation Probabilities")
+st.write(fixation_probabilities)
+
+stationary_distribution = egt.utils.calculate_stationary_distribution(transition_matrix.transpose())
