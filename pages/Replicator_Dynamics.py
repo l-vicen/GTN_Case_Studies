@@ -26,6 +26,8 @@ if (selected_X_player_game == "2-Player Game"):
 
     # Plot the gradient
     egt.plotting.plot_gradients(gradients[:, 0], xlabel="frequency of hawks", roots=roots, stability=stability)
+    fig, ax = plt.subplots(figsize=(10,8))
+    st.pyplot(fig)
 
 else: 
     st.markdown("## Inputs")
