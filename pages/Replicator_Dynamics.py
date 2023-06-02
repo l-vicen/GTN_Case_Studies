@@ -18,12 +18,16 @@ if (selected_X_player_game == "2-Player Game"):
     st.markdown("### Payoff Matrix")
     st.write(A)
 
+    game = egt.games.NormalFormGame(1, A)
+
     gradient_function = lambda x: egt.analytical.replicator_equation(x, A)
     gradients = calculate_gradients(np.array((x, 1 - x)).T, gradient_function)
 
     # Find roots and stability
     roots = find_roots(gradient_function, nb_strategies=2, nb_initial_random_points=10, method="hybr")
     stability = check_replicator_stability_pairwise_games(roots, A)
+
+    st.pyplot(plot_replicator_dynamics_in_simplex())
 
     # Plot the gradient
     st.pyplot(plot_gradients(gradients[:, 0], xlabel="frequency of cooperator", roots=roots, stability=stability).get_figure())
