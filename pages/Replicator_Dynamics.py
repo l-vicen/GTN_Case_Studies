@@ -49,7 +49,7 @@ else:
         ax = egt.plotting.plot_gradients(gradients[:, 0], xlabel="frequency of hawks")
         plt.show()
     
-        st.pyplot(plt.get_figure())
+        st.pyplot(plt.figure())
 
         st.markdown("---")
         st.markdown("## Outputs")
