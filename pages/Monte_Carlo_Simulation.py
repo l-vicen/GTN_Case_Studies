@@ -7,7 +7,7 @@ st.markdown("# Monte Carlo Simulation")
 
 strategies = [egt.behaviors.NormalForm.TwoActions.Cooperator(), 
               egt.behaviors.NormalForm.TwoActions.Defector(), 
-              egt.behaviors.NormalForm.TwoActions.Dynamic()]
+              egt.behaviors.NormalForm.TwoActions.Random()]
 
 T=4; R=2; P=1; S=0
 A = np.array([
@@ -18,3 +18,7 @@ A = np.array([
 
 strategy_labels = [strategy.type().replace("NFGStrategies::", '') for strategy in strategies]
 st.write(strategy_labels)
+
+game = egt.games.NormalFormGame(100, A, strategies)
+
+st.write(game)
