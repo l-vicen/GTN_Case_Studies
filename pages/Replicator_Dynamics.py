@@ -1,11 +1,9 @@
 from egttools.plotting.simplified import plot_replicator_dynamics_in_simplex
-import numpy as np
-import egttools as egt
 import matplotlib.pylab as plt
 import streamlit as st
 import Macros
 
-st.markdown("# Markov Chain")
+st.markdown("# Replicator Dynamics: Infinite Population")
 
 st.markdown("## Inputs")
 selected_payoff = st.selectbox("Select the desired payoff matrix representing a local model.", Macros.LOCAL_MODELS)
