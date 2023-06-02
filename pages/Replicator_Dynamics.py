@@ -44,6 +44,10 @@ else:
         st.markdown("### Gradients")
         st.write(gradients)
 
+        gradiant_fig = plt.figure()
+        gradiant_fig.egt.plotting.plot_gradients(gradients[:, 0], xlabel="frequency of hawks")
+        st.pyplot(gradiant_fig)
+
         st.markdown("---")
         st.markdown("## Outputs")
         fig, ax = plt.subplots(figsize=(10,8))
