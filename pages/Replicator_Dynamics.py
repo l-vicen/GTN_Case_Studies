@@ -9,12 +9,24 @@ from egttools.plotting.simplified import plot_replicator_dynamics_in_simplex
 
 st.markdown("# Replicator Dynamics: Infinite Population")
 
-selected_X_player_game = st.selectbox("Select the desired number of players for your game:", Macros.PLAYER_GAMES, key = 1)
+selected_X_player_game = st.selectbox("Select the desired number of players for your game:", Macros.PLAYER_GAMES, key = 0)
+x = np.linspace(0, 1, num=101, dtype=np.float64)
 
 if (selected_X_player_game == "2-Player Game"):
     A = Macros.TWO_PLAYER_BASIC_MODEL_PAYOFF
     st.markdown("### Payoff Matrix")
     st.write(A)
+
+    gradient_function = lambda x: egt.analytical.replicator_equation(x, A)
+    gradients = calculate_gradients(np.array((x, 1 - x)).T, gradient_function)
+
+    # Find roots and stability
+    roots = find_roots(gradient_function, nb_strategies=2, nb_initial_random_points=10, method="hybr")
+    stability = check_replicator_stability_pairwise_games(roots, A)
+
+    # Plot the gradient
+    egt.plotting.plot_gradients(gradients[:, 0], xlabel="frequency of hawks", roots=roots, stability=stability)
+
 else: 
     st.markdown("## Inputs")
     selected_payoff = st.selectbox("Select the desired payoff matrix representing a local model.", Macros.LOCAL_MODELS, key = 1)
@@ -24,21 +36,8 @@ else:
         st.markdown("### Payoff Matrix")
         st.write(A)
 
-        st.markdown("### Vector")
-        x = np.linspace(0, 1, num=101, dtype=np.float64)
-        st.write(x)
-
-        st.markdown("### Gradient Function")
-        gradient_function = lambda x: egt.analytical.replicator_equation(x, A) 
-        st.markdown()
-        st.write(gradient_function)
-
-        st.markdown("### Gradients")
+        gradient_function = lambda x: egt.analytical.replicator_equation_n_player(x, A, group_size=3)
         gradients = calculate_gradients(np.array((x, 1 - x)).T, gradient_function)
-        st.write(gradients)
-
-        # Plot the gradient
-        egt.plotting.plot_gradients(gradients[:, 0], xlabel="frequency of hawks")
 
         st.markdown("---")
         st.markdown("## Outputs")
