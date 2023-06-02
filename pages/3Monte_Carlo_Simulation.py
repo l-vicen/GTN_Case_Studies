@@ -16,11 +16,7 @@ A = np.array([
     ])
 
 strategies = [egt.behaviors.NormalForm.TwoActions.Cooperator(), 
-              egt.behaviors.NormalForm.TwoActions.Defector(), 
-              egt.behaviors.NormalForm.TwoActions.TFT(),
-              egt.behaviors.NormalForm.TwoActions.Pavlov(), 
-              egt.behaviors.NormalForm.TwoActions.Random(), 
-              egt.behaviors.NormalForm.TwoActions.GRIM()]
+              egt.behaviors.NormalForm.TwoActions.Defector()]
 
 strategy_labels = [strategy.type().replace("NFGStrategies::", '') for strategy in strategies]
 st.write(strategy_labels)
