@@ -16,7 +16,7 @@ if (selected_payoff != "None"):
     st.markdown("### Payoff Matrix")
     st.write(A)
 
-    st.markdown("### Strategy Mix")
+    st.markdown("### Vector")
     x = np.linspace(0, 1, num=101, dtype=np.float64)
     st.write(x)
 
@@ -29,11 +29,14 @@ if (selected_payoff != "None"):
     gradients = calculate_gradients(np.array((x, 1 - x)).T, gradient_function)
     st.write(gradients)
 
-    st.markdown("### Roots")
-    roots = find_roots(gradient_function, nb_strategies=2, nb_initial_random_points=10, method="hybr")
+    # st.markdown("### Roots")
+    # roots = find_roots(gradient_function, nb_strategies=2, nb_initial_random_points=10, method="hybr")
 
-    st.markdown("### Stability")
-    stability = check_replicator_stability_pairwise_games(roots, A)
+    # st.markdown("### Stability")
+    # stability = check_replicator_stability_pairwise_games(roots, A)
+
+    # Plot the gradient
+    egt.plotting.plot_gradients(gradients[:, 0], xlabel="frequency of hawks")
 
     st.markdown("---")
     st.markdown("## Outputs")
