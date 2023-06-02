@@ -2,7 +2,14 @@ import numpy as np
 
 STRATEGY_TYPES = ["Mask", "Dynamic Mask", "No Mask"]
 
-LOCAL_MODELS = ["None", "Basic Model", "Fine for not waering masks", "Subsidies for wearing masks", "Low Medical Level", "High Medical Level"]
+LOCAL_MODELS = ["None", "Basic Model", "Fine for not wearing masks", "Subsidies for wearing masks", "Low Medical Level", "High Medical Level"]
+
+PLAYER_GAMES = ["2-Player Game", "3-Player Game"]
+
+TWO_PLAYER_BASIC_MODEL_PAYOFF = np.array([
+       [-0.5, 2.], # Mask
+       [0., 0] # No Mask
+])
 
 BASIC_MODEL_PAYOFF = np.array([
         [-1, -5.7, -3.35], # Mask 
