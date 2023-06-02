@@ -45,7 +45,6 @@ G = egt.plotting.draw_invasion_diagram(strategy_labels,
                                               font_size_edge_labels=8,
                                               font_size_sd_labels=8,
                                               edge_width=1,
-                                              min_strategy_frequency=0.00001,
                                               ax=ax)
 plt.axis('off')
 st.pyplot(fig)
