@@ -6,7 +6,6 @@ import Macros
 st.markdown("# Replicator Dynamics: Infinite Population")
 
 st.markdown("## Inputs")
-
 selected_payoff = st.selectbox("Select the desired payoff matrix representing a local model.", Macros.LOCAL_MODELS)
 
 if (selected_payoff != "None"): 
@@ -31,10 +30,14 @@ if (selected_payoff != "None"):
 
     st.markdown("### Roots")
     st.write(roots)
+
+    st.markdown("### Roots X and Y")
     st.write(roots_xy)
 
     st.markdown("### Stability")
     st.write(stability)
+
+    st.write("### Simplex")
     plt.xlim((-.05,1.05))
     plt.ylim((-.02, simplex.top_corner + 0.05))
     st.pyplot(fig)
