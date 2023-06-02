@@ -7,7 +7,7 @@ st.markdown("# Replicator Dynamics: Infinite Population")
 
 st.markdown("## Inputs")
 
-selected_payoff = st.selectbox("Select the desired payoff matrix representing a local model.", Macros.LOCAL_MODELS, value=None)
+selected_payoff = st.selectbox("Select the desired payoff matrix representing a local model.", Macros.LOCAL_MODELS)
 
 if (selected_payoff != "None"): 
     A = Macros.LOCAL_MODEL_PAYOFF_DICT[selected_payoff]
