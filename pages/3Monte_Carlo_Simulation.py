@@ -44,11 +44,11 @@ import networkx as nx
 
 from egttools.behaviors.NormalForm.TwoActions import (Cooperator,Defector, TFT, Pavlov, GRIM, Random)
 
-Z = 100
+Z = 10000
 beta = 1.0
 
 # Define which strategies can be present in the population
-strategies = [Cooperator(), Defector(), TFT(), Pavlov(), Random(), GRIM()]
+strategies = [Cooperator(), Defector(), Random()]
 # define the game
 payoffs = np.array([[1, 3],[0, 2]])
 game = egt.games.NormalFormGame(100, payoffs, strategies)
