@@ -26,7 +26,10 @@ if (selected_X_player_game == "2-Player Game"):
     stability = check_replicator_stability_pairwise_games(roots, A)
 
     # Plot the gradient
-    st.pyplot(    plot_gradients(gradients[:, 0], xlabel="frequency of hawks", roots=roots, stability=stability).get_figure())
+
+    fig = plt.figure()
+    fig.add_axes(plot_gradients(gradients[:, 0], xlabel="frequency of hawks", roots=roots, stability=stability))
+    st.pyplot(fig)
 
 else: 
     st.markdown("## Inputs")
