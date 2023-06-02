@@ -27,6 +27,7 @@ if (selected_X_player_game == "2-Player Game"):
 
     # Plot the gradient
     st.pyplot(plot_gradients(gradients[:, 0], xlabel="frequency of hawks", roots=roots, stability=stability).get_figure())
+    st.pyplot(plot_gradients(gradients[:, 1], xlabel="frequency of doves", roots=roots, stability=stability).get_figure())
 
 else: 
     st.markdown("## Inputs")
