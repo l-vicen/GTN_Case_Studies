@@ -10,7 +10,8 @@ from egttools.behaviors.NormalForm.TwoActions import (Cooperator,Defector, TFT, 
 egt.Random.init()
 seed = egt.Random._seed
 
-Z = 1
+Z = 100
+beta = 1.0
 
 # Define which strategies can be present in the population
 strategies = [Cooperator(), Defector(), TFT(), Pavlov(), Random(), GRIM()]
