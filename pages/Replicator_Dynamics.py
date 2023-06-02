@@ -41,6 +41,12 @@ else:
         gradient_function = lambda x: egt.analytical.replicator_equation_n_player(x, A, group_size=3)
         gradients = calculate_gradients(np.array((x, 1 - x)).T, gradient_function)
 
+        st.markdown("### Gradiant Function")
+        st.write(gradient_function)
+
+        st.markdown("### Gradients")
+        st.write(gradients)
+
         st.markdown("---")
         st.markdown("## Outputs")
         fig, ax = plt.subplots(figsize=(10,8))
