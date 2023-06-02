@@ -11,10 +11,12 @@ selected_payoff = st.selectbox("Select the desired payoff matrix representing a 
 
 if (selected_payoff != "None"): 
     A = Macros.LOCAL_MODEL_PAYOFF_DICT[selected_payoff]
+    st.markdown("### Payoff Matrix")
     st.write(A)
-    st.markdown("---")
-    st.markdown("## Outputs")
 
+    st.markdown("---")
+
+    st.markdown("## Outputs")
     fig, ax = plt.subplots(figsize=(10,8))
     simplex, gradient_function, roots, roots_xy, stability = plot_replicator_dynamics_in_simplex(A, ax=ax)
     plot = (simplex.draw_triangle()
@@ -27,12 +29,12 @@ if (selected_payoff != "None"):
     ax.axis('off')
     ax.set_aspect('equal')
 
-    st.markdown("## Model Outputs")
+    st.markdown("### Roots")
     st.write(roots)
     st.write(roots_xy)
+
+    st.markdown("### Stability")
     st.write(stability)
-
-
     plt.xlim((-.05,1.05))
     plt.ylim((-.02, simplex.top_corner + 0.05))
     st.pyplot(fig)
