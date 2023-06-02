@@ -3,6 +3,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import egttools as egt
 
+egt.Random.init()
+seed = egt.Random._seed
+
 st.markdown("# Monte Carlo Simulation")
 
 strategies = [egt.behaviors.NormalForm.TwoActions.Cooperator(), 
