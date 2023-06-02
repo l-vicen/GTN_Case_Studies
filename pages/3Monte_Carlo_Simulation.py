@@ -8,9 +8,9 @@ egt.Random.init()
 seed = egt.Random._seed
 
 A = np.array([
-    [1, 0, 0],
-    [-1, -1, -1],
-    [-0.5,-0.5,-0.5]
+    [1, -1, -0.5],
+    [0, -1, -0.5],
+    [1,-1,-0.5]
 ])
 
 strategies = [egt.behaviors.NormalForm.TwoActions.Cooperator(),
