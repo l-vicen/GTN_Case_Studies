@@ -1,7 +1,7 @@
 import matplotlib.pylab as plt
 import streamlit as st
 import numpy as np
-import egt
+import egttools as egt
 import Macros
 
 from egttools.analytical.utils import (calculate_gradients, find_roots, check_replicator_stability_pairwise_games)
