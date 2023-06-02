@@ -44,19 +44,14 @@ else:
         st.markdown("### Gradients")
         st.write(gradients)
 
-        st.pyplot(egt.plotting.plot_gradients(gradients[:, 0], xlabel="frequency of hawks"))
+        fig_Gradient, ax = egt.plotting.plot_gradients(gradients[:, 0], xlabel="frequency of hawks")
+        st.pyplot(fig_Gradient)
 
         st.markdown("---")
         st.markdown("## Outputs")
         fig, ax = plt.subplots(figsize=(10,8))
         simplex, gradient_function, roots, roots_xy, stability = plot_replicator_dynamics_in_simplex(A, ax=ax)
-        plot = (simplex.draw_triangle()
-                .add_vertex_labels(Macros.STRATEGY_TYPES, epsilon_bottom=0.1)
-                .draw_stationary_points(roots_xy, stability)
-                .draw_gradients(zorder=0)
-                .add_colorbar()
-                .draw_scatter_shadow(gradient_function, 100, color='gray', marker='.', s=0.1)
-                )
+        
         ax.axis('off')
         ax.set_aspect('equal')
 
@@ -68,6 +63,14 @@ else:
 
         st.markdown("### Stability")
         st.write(stability)
+        
+        plot = (simplex.draw_triangle()
+                .add_vertex_labels(Macros.STRATEGY_TYPES, epsilon_bottom=0.1)
+                .draw_stationary_points(roots_xy, stability)
+                .draw_gradients(zorder=0)
+                .add_colorbar()
+                .draw_scatter_shadow(gradient_function, 100, color='gray', marker='.', s=0.1)
+                )
 
         st.write("### Simplex")
         plt.xlim((-.05,1.05))
