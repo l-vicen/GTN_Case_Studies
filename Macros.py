@@ -2,7 +2,7 @@ import numpy as np
 
 STRATEGY_TYPES = ["Mask", "Dynamic Mask", "No Mask"]
 
-LOCAL_MODELS = ["Basic Model", "Fine for not waering masks", "Subsidies for wearing masks", "Low Medical Level", "High Medical Level"]
+LOCAL_MODELS = ["None", "Basic Model", "Fine for not waering masks", "Subsidies for wearing masks", "Low Medical Level", "High Medical Level"]
 
 BASIC_MODEL_PAYOFF = np.array([
         [-1, -5.7, -3.35], # Mask 
@@ -35,9 +35,9 @@ HIGH_MED_MODEL_PAYOFF = np.array([
 ])
 
 LOCAL_MODEL_PAYOFF_DICT = {
-    LOCAL_MODELS[0]: BASIC_MODEL_PAYOFF,
-    LOCAL_MODELS[1]: FINES_MODEL_PAYOFF,
-    LOCAL_MODELS[2]: SUBSIDIES_MODEL_PAYOFF,
-    LOCAL_MODELS[3]: LOW_MED_MODEL_PAYOFF,
-    LOCAL_MODELS[4]: HIGH_MED_MODEL_PAYOFF,
+    LOCAL_MODELS[1]: BASIC_MODEL_PAYOFF,
+    LOCAL_MODELS[2]: FINES_MODEL_PAYOFF,
+    LOCAL_MODELS[3]: SUBSIDIES_MODEL_PAYOFF,
+    LOCAL_MODELS[4]: LOW_MED_MODEL_PAYOFF,
+    LOCAL_MODELS[5]: HIGH_MED_MODEL_PAYOFF,
 }

@@ -9,7 +9,7 @@ st.markdown("## Inputs")
 
 selected_payoff = st.selectbox("Select the desired payoff matrix representing a local model.", Macros.LOCAL_MODELS, value=None)
 
-if (selected_payoff != None): 
+if (selected_payoff != "None"): 
     A = Macros.LOCAL_MODEL_PAYOFF_DICT[selected_payoff]
     st.write(A)
     st.markdown("---")
