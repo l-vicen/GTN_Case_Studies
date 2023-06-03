@@ -11,5 +11,5 @@ st.info("@misc{Fernandez2020,\
   year = {2020},\
   publisher = {GitHub},\
   journal = {GitHub repository},\
-  howpublished = {\url{https://github.com/Socrats/EGTTools}},\
-  doi = {10.5281/zenodo.3687125}}")
+  howpublished = {\url{https://github.com/Socrats/EGTTools},\
+  doi = {10.5281/zenodo.3687125}")
