@@ -41,8 +41,8 @@ else:
     selected_payoff = st.selectbox("Select the desired payoff matrix representing a local model.", Macros.LOCAL_MODELS, key = 1)
 
     if (selected_payoff != "None"): 
-        # A = Macros.LOCAL_MODEL_PAYOFF_DICT[selected_payoff]
-        A = Macros.LUCAS_THREE
+        A = Macros.LOCAL_MODEL_PAYOFF_DICT[selected_payoff]
+        # A = Macros.LUCAS_THREE
         st.markdown("### Payoff Matrix")
         st.write(A)
  

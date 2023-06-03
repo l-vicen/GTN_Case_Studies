@@ -1,7 +1,7 @@
 import numpy as np
 
 STRATEGY_TYPES = ["Mask", "Dynamic Mask", "No Mask"]
-LOCAL_MODELS = ["None", "Basic Model", "Fine for not wearing masks", "Subsidies for wearing masks", "Low Medical Level", "High Medical Level"]
+LOCAL_MODELS = ["None", "Basic Model", "Fine for not wearing masks", "Subsidies for wearing masks", "Low Medical Level", "High Medical Level", "LUCAS"]
 NUMBER_STRATEGY_GAMES = ["2-Strategy Game", "3-Strategy Game"]
 
 TWO_STRATEGY_LUCAS_PAYOFF = np.array([
@@ -50,4 +50,5 @@ LOCAL_MODEL_PAYOFF_DICT = {
     LOCAL_MODELS[3]: SUBSIDIES_MODEL_PAYOFF,
     LOCAL_MODELS[4]: LOW_MED_MODEL_PAYOFF,
     LOCAL_MODELS[5]: HIGH_MED_MODEL_PAYOFF,
+    LOCAL_MODELS[6]: LUCAS_THREE
 }
