@@ -48,9 +48,9 @@ else:
         st.markdown("### Gradients")
         st.write(gradients_n_players)
         
-        st.pyplot(plot_gradients(gradients_n_players[:, 0], xlabel="frequency of cooperator").get_figure())
-        st.pyplot(plot_gradients(gradients_n_players[:, 1], xlabel="frequency of dynamic_cooperator").get_figure())
-        st.pyplot(plot_gradients(gradients_n_players[:, 2], xlabel="frequency of free-rider").get_figure())
+        # st.pyplot(plot_gradients(gradients_n_players[:, 0], xlabel="frequency of cooperator").get_figure())
+        # st.pyplot(plot_gradients(gradients_n_players[:, 1], xlabel="frequency of dynamic_cooperator").get_figure())
+        # st.pyplot(plot_gradients(gradients_n_players[:, 2], xlabel="frequency of free-rider").get_figure())
 
         st.markdown("---")
         st.markdown("## Outputs")
