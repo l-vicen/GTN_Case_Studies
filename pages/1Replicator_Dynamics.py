@@ -4,21 +4,17 @@ import numpy as np
 import egttools as egt
 import Macros
 
-from egttools.analytical.utils import (calculate_gradients, find_roots, check_replicator_stability_pairwise_games)
-from egttools.plotting.simplified import plot_replicator_dynamics_in_simplex
-from egttools.plotting import plot_gradients
+from egttools.analytical.utils import (calculate_gradients,find_roots, check_replicator_stability_pairwise_games)
+from egttools.plotting import plot_replicator_dynamics_in_simplex, plot_gradients
 
 st.markdown("# Replicator Dynamics: Infinite Population")
 
-selected_X_player_game = st.selectbox("Select the desired number of players for your game:", Macros.PLAYER_GAMES, key = 0)
+selected_X_player_game = st.selectbox("Select the desired number of players for your game:", Macros.NUMBER_STRATEGY_GAMES, key = 0)
 strategy_i = np.linspace(0, 1, num=101, dtype=np.float64)
 
-if (selected_X_player_game == "2-Player Game"):
+if (selected_X_player_game == "2-Strategy Game"):
 
-    # A = Macros.TWO_PLAYER_BASIC_MODEL_PAYOFF
-    A = np.array([
-            [1, -0.5],
-            [-0.5, -1]])
+    A = Macros.TWO_STRATEGY_LUCAS_PAYOFF
     st.markdown("### Payoff Matrix")
     st.write(A)
 
@@ -46,7 +42,7 @@ else:
 
     if (selected_payoff != "None"): 
         # A = Macros.LOCAL_MODEL_PAYOFF_DICT[selected_payoff]
-        A = Macros.THREE_PLAYER_LUCAS_MODEL_PAYOFF
+        A = Macros.LUCAS_THREE
         st.markdown("### Payoff Matrix")
         st.write(A)
  
@@ -54,9 +50,6 @@ else:
         st.markdown("## Outputs")
         fig, ax = plt.subplots(figsize=(10,8))
         simplex, gradient_function, roots, roots_xy, stability = plot_replicator_dynamics_in_simplex(A, ax=ax)
-        # gradients_n_players = calculate_gradients(np.array((strategy_i, 1 - strategy_i)).T, gradient_function)
-        # st.markdown("### Analytical Calculation of Gradients")
-        # st.write(gradients_n_players)
 
         st.markdown("### Analytical Calculation of Roots of the ODE System")
         st.write(roots)

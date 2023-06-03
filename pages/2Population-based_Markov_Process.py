@@ -8,40 +8,41 @@ import numpy as np
 import Macros
 
 st.markdown("# Markov Process: Infinite Population")
-
 st.markdown("## Inputs")
 population = int(st.number_input('Insert Population Size', value=100, key=1))
 beta = st.number_input('Insert the Selection Strength', value = 1)
 mu = 1/population
+selected_X_player_game = st.selectbox("Select the desired number of players for your game:", Macros.NUMBER_STRATEGY_GAMES, key = 0)
+if (selected_X_player_game == "2-Strategy Game"):
+    pass
+    # # Payoff matrix
+    # V = 2; D = 3; T = 1
+    # A = np.array([
+    #         [ (V-D)/2, V],
+    #         [ 0      , (V/2) - T],
+    #     ])
+    # st.markdown("### Payoff Matrix")
+    # st.write(A)
 
-selected_X_player_game = st.selectbox("Select the desired number of players for your game:", Macros.PLAYER_GAMES, key = 0)
-if (selected_X_player_game == "2-Player Game"):
-    # A = Macros.TWO_PLAYER_BASIC_MODEL_PAYOFF
-    A = np.array([
-            [1, -0.5],
-            [-0.5, -1]])
-    st.markdown("### Payoff Matrix")
-    st.write(A)
+    # pop_states = np.arange(0, population + 1, 1)
+    # game = egt.games.Matrix2PlayerGameHolder(number_strategy = 2, payoff =A)
+    # evolver = PairwiseComparison(population, game)
 
-    pop_states = np.arange(0, population + 1, 1)
-    game = egt.games.Matrix2PlayerGameHolder(2,A)
-    evolver = PairwiseComparison(population, game)
+    # st.markdown("### Analytical Calculation of Gradients")
+    # gradients = np.array([evolver.calculate_gradient_of_selection(beta, np.array([x, population-x])) for x in range(population + 1)])
+    # st.write(gradients)
 
-    st.markdown("### Analytical Calculation of Gradients")
-    gradients = np.array([evolver.calculate_gradient_of_selection(beta, np.array([x, population-x])) for x in range(population + 1)])
-    st.write(gradients)
-
-    # Plot gradient of selections
-    st.pyplot(plot_gradients(gradients[:, 0],  figsize=(6,5),  marker_facecolor='white', xlabel="Frequency of Cooperator (% population)", marker="o", marker_size=30, marker_plot_freq=2).get_figure())
-    st.pyplot(plot_gradients(gradients[:, 1],  figsize=(6,5),  marker_facecolor='white', xlabel="Frequency of Free-rider (% population)", marker="o", marker_size=30, marker_plot_freq=2).get_figure())
+    # # Plot gradient of selections
+    # st.pyplot(plot_gradients(gradients[:, 0], xlabel="Frequency of Cooperator  (% population)", marker="o").get_figure())
+    # st.pyplot(plot_gradients(gradients[:, 1], xlabel="Frequency of Free-rider (% population)", marker="o").get_figure())
 
 
 else:
+        
     selected_payoff = st.selectbox("Select the desired payoff matrix representing a local model.", Macros.LOCAL_MODELS)
 
     if (selected_payoff != "None"): 
-        # A = Macros.LOCAL_MODEL_PAYOFF_DICT[selected_payoff]
-        A = Macros.THREE_PLAYER_LUCAS_MODEL_PAYOFF
+        A = Macros.LOCAL_MODEL_PAYOFF_DICT[selected_payoff]
         st.markdown("## Payoff Matrix")
         st.write(A)
 
@@ -52,10 +53,10 @@ else:
         transitions = evolver.calculate_transition_matrix(beta=beta, mu=mu)
         sd = egt.utils.calculate_stationary_distribution(transitions.transpose())
         plot = (simplex.draw_triangle()
-                      .add_vertex_labels(Macros.STRATEGY_TYPES, epsilon_bottom=0.1, epsilon_top=0.03)
-                      .draw_stationary_distribution(sd, alpha=1, shrink=0.5,edgecolors='gray', cmap='binary', shading='gouraud', zorder=0)
-                      .draw_gradients(zorder=2, linewidth=1.5)
-                      .add_colorbar(shrink=0.5))
+                    .add_vertex_labels(Macros.STRATEGY_TYPES, epsilon_bottom=0.1, epsilon_top=0.03)
+                    .draw_stationary_distribution(sd, alpha=1, shrink=0.5,edgecolors='gray', cmap='binary', shading='gouraud', zorder=0)
+                    .draw_gradients(zorder=2, linewidth=1.5)
+                    .add_colorbar(shrink=0.5))
         ax.axis('off')
         ax.set_aspect('equal')
 
