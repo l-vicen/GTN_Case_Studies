@@ -11,51 +11,58 @@ from egttools.plotting import plot_gradients
 st.markdown("# Replicator Dynamics: Infinite Population")
 
 selected_X_player_game = st.selectbox("Select the desired number of players for your game:", Macros.PLAYER_GAMES, key = 0)
-x = np.linspace(0, 1, num=101, dtype=np.float64)
+strategy_i = np.linspace(0, 1, num=101, dtype=np.float64)
 
 if (selected_X_player_game == "2-Player Game"):
-    A = Macros.TWO_PLAYER_BASIC_MODEL_PAYOFF
+
+    # A = Macros.TWO_PLAYER_BASIC_MODEL_PAYOFF
+    A = np.array([
+            [1, -0.5],
+            [-0.5, -1]])
     st.markdown("### Payoff Matrix")
     st.write(A)
 
-    game = egt.games.NormalFormGame(1, A)
-
+    st.markdown("### Analytical Calculation of Gradients")
     gradient_function = lambda x: egt.analytical.replicator_equation(x, A)
-    gradients = calculate_gradients(np.array((x, 1 - x)).T, gradient_function)
+    gradients = calculate_gradients(np.array((strategy_i, 1 - strategy_i)).T, gradient_function)
+    st.write(gradients)
 
-    # Find roots and stability
-    roots = find_roots(gradient_function, nb_strategies=2, nb_initial_random_points=10, method="hybr")
+    # # Find roots and stability
+    st.markdown("### Analytical Calculation of Roots of the ODE System")
+    roots = find_roots(gradient_function, nb_strategies=2, nb_initial_random_points=100, method="hybr")
+    st.write(roots)
+
+    st.markdown("### Analytical Calculation of Stability of Roots")
     stability = check_replicator_stability_pairwise_games(roots, A)
+    st.write(stability)
 
-    # st.pyplot(plot_replicator_dynamics_in_simplex())
-
-    # Plot the gradient
-    st.pyplot(plot_gradients(gradients[:, 0], xlabel="frequency of cooperator", roots=roots, stability=stability).get_figure())
-    st.pyplot(plot_gradients(gradients[:, 1], xlabel="frequency of free-rider", roots=roots, stability=stability).get_figure())
+    # Plot gradient of selections
+    st.pyplot(plot_gradients(gradients[:, 0], xlabel="Frequency of Cooperator", roots=roots, stability=stability).get_figure())
+    st.pyplot(plot_gradients(gradients[:, 1], xlabel="Frequency of Free-rider", roots=roots, stability=stability).get_figure())
 
 else: 
     st.markdown("## Inputs")
     selected_payoff = st.selectbox("Select the desired payoff matrix representing a local model.", Macros.LOCAL_MODELS, key = 1)
 
     if (selected_payoff != "None"): 
-        A = Macros.LOCAL_MODEL_PAYOFF_DICT[selected_payoff]
+        # A = Macros.LOCAL_MODEL_PAYOFF_DICT[selected_payoff]
+        A = Macros.THREE_PLAYER_LUCAS_MODEL_PAYOFF
         st.markdown("### Payoff Matrix")
         st.write(A)
-
-        gradient_function = lambda x: egt.analytical.replicator_equation_n_player(x, A, group_size=3)
-        gradients_n_players = calculate_gradients(np.array((x, 1 - x)).T, gradient_function)
-
-        st.markdown("### Gradients")
-        st.write(gradients_n_players)
-        
-        # st.pyplot(plot_gradients(gradients_n_players[:, 0], xlabel="frequency of cooperator").get_figure())
-        # st.pyplot(plot_gradients(gradients_n_players[:, 1], xlabel="frequency of dynamic_cooperator").get_figure())
-        # st.pyplot(plot_gradients(gradients_n_players[:, 2], xlabel="frequency of free-rider").get_figure())
-
+ 
         st.markdown("---")
         st.markdown("## Outputs")
         fig, ax = plt.subplots(figsize=(10,8))
         simplex, gradient_function, roots, roots_xy, stability = plot_replicator_dynamics_in_simplex(A, ax=ax)
+        # gradients_n_players = calculate_gradients(np.array((strategy_i, 1 - strategy_i)).T, gradient_function)
+        # st.markdown("### Analytical Calculation of Gradients")
+        # st.write(gradients_n_players)
+
+        st.markdown("### Analytical Calculation of Roots of the ODE System")
+        st.write(roots)
+
+        st.markdown("### Analytical Calculation of Stability of Roots")
+        st.write(stability)
         
         ax.axis('off')
         ax.set_aspect('equal')
