@@ -27,7 +27,7 @@ if (selected_X_player_game == "2-Player Game"):
     roots = find_roots(gradient_function, nb_strategies=2, nb_initial_random_points=10, method="hybr")
     stability = check_replicator_stability_pairwise_games(roots, A)
 
-    st.pyplot(plot_replicator_dynamics_in_simplex())
+    # st.pyplot(plot_replicator_dynamics_in_simplex())
 
     # Plot the gradient
     st.pyplot(plot_gradients(gradients[:, 0], xlabel="frequency of cooperator", roots=roots, stability=stability).get_figure())
