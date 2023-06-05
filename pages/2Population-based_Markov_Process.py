@@ -34,7 +34,7 @@ if (selected_X_player_game == "2-Strategy Game"):
     # # Plot gradient of selections
     # st.pyplot(plot_gradients(gradients[:, 0], xlabel="Frequency of Cooperator  (% population)", marker="o").get_figure())
     # st.pyplot(plot_gradients(gradients[:, 1], xlabel="Frequency of Free-rider (% population)", marker="o").get_figure())
-
+    pass
 
 else:
         
