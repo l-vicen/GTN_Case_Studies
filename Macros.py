@@ -8,6 +8,7 @@ TWO_STRATEGY_LUCAS_PAYOFF = np.array([
        [3, 1.5], # Mask
        [1.5, -3] # No Mask
 ])
+
 LUCAS_THREE = np.array([
        [3, 0, 1.5], # Mask
        [6, 0.5, 0.75], # No Mask
