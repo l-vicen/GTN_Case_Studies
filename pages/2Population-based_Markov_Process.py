@@ -7,7 +7,7 @@ import streamlit as st
 import numpy as np
 import Macros
 
-st.markdown("# Markov Process: Infinite Population")
+st.markdown("# Markov Process: Finite Population")
 st.markdown("## Inputs")
 population = int(st.number_input('Insert Population Size', value=100, key=1))
 beta = st.number_input('Insert the Selection Strength', value = 1)
