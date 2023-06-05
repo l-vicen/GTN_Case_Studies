@@ -1,4 +1,4 @@
-import matplotlib as plt
+import matplotlib.pylab as plt
 import streamlit as st
 import numpy as np
 import egttools as egt

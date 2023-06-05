@@ -14,7 +14,6 @@ beta = st.number_input('Insert the Selection Strength', value = 1)
 mu = 1/population
 selected_X_player_game = st.selectbox("Select the desired number of players for your game:", Macros.NUMBER_STRATEGY_GAMES, key = 0)
 if (selected_X_player_game == "2-Strategy Game"):
-    pass
     # # Payoff matrix
     # V = 2; D = 3; T = 1
     # A = np.array([
