@@ -18,7 +18,7 @@ LUCAS_THREE = np.array([
 BASIC_MODEL_PAYOFF = np.array([
         [-1.25, -5.7, -3.35], # Mask 
         [ 25.3, -58.36, -14.18], # No Mask
-        [12.65, -29.18, 7.09] # Dynamic Mask
+        [12.65, -29.18, -7.09] # Dynamic Mask
 ])
 
 FINES_MODEL_PAYOFF = np.array([
@@ -36,7 +36,7 @@ SUBSIDIES_MODEL_PAYOFF = np.array([
 LOW_MED_MODEL_PAYOFF = np.array([
         [-1.375, -8.05, -4.525], # Mask 
         [ 22.95, -102.54, -36.27], # No Mask
-        [-11.475, -51.27, -18.135] # Dynamic Mask
+        [11.475, -51.27, -18.135] # Dynamic Mask
 ])
 
 HIGH_MED_MODEL_PAYOFF = np.array([

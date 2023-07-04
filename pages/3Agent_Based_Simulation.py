@@ -9,7 +9,6 @@ from cycler import cycler
 import Macros
 from egttools.behaviors.NormalForm.TwoActions import (Cooperator, Defector, Random)
 from egttools.plotting.simplified import plot_pairwise_comparison_rule_dynamics_in_simplex_without_roots
-from egttools.plotting import plot_pairwise_comparison_rule_dynamics_in_simplex
 
 sns.set_style("whitegrid")
 plt.rcParams['svg.fonttype'] = 'none'
@@ -60,7 +59,7 @@ if (selected_payoff != "None"):
     strategies = [Cooperator(), Defector(), Random()]
 
     game = egt.games.NormalFormGame(population, A, strategies)
-    st.write(game)
+    # st.write(game)
     beta = 1
     mu = 1/population
 
