@@ -59,7 +59,6 @@ if (selected_payoff != "None"):
     strategies = [Cooperator(), Defector(), Random()]
 
     game = egt.games.NormalFormGame(population, A, strategies)
-    # st.write(game)
     beta = 1
     mu = 1/population
 
