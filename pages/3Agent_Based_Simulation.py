@@ -25,6 +25,8 @@ allD = int(st.number_input('Insert number of Defector agents in the population',
 allRandom = int(st.number_input('Insert number of Random agents in the populatiio', value=40))
 rounds = int(st.number_input('Insert Number of Rounds', value=10))
 selected_payoff = st.selectbox("Select the desired payoff matrix representing a local model.", Macros.LOCAL_MODELS)
+mu = st.number_input('Insert the Mutation Probability', value = 0.5, format="%.2f")
+beta = st.number_input('Insert the Selection Strength', value = 0.5, format="%.2f")
 
 
 if (selected_payoff != "None"): 
@@ -34,16 +36,14 @@ if (selected_payoff != "None"):
         strategies = [Cooperator(), Defector(), Random()]
         game = egt.games.NormalFormGame(rounds, A, strategies)
         strategy_labels = [strategy.type().replace("NFGStrategies::", '') for strategy in strategies]
-
         st.markdown("## Payoff Matrix")
         st.write(A)
-
-        # st.write(game.expected_payoffs())
 
         st.markdown("---")
         st.markdown("## Output")
 
         st.markdown("### Population Development over Generation")
+        st.inform("Here 1 single run has been considered.")
         evolver = egt.numerical.PairwiseComparisonNumerical(population, game, 1000)
         output = evolver.run(int(1e7), 1, 1e-3, [allC, allD, allRandom])
         colors = sns.color_palette("colorblind", len(strategies))
@@ -67,7 +67,8 @@ if (selected_payoff != "None"):
         st.pyplot(fig)
 
         st.markdown("### Strategy Distribution")
-        distribution = evolver.estimate_strategy_distribution(1, int(1e7), int(1e3), 1, 0.1)
+        st.inform("Here 10 runs have been considered and the frequency is the average of them.")
+        distribution = evolver.estimate_strategy_distribution(10, int(1e7), int(1e3), beta, mu)
         figTwo, ax = plt.subplots(figsize=(8, 3))
         ax = sns.barplot(x=strategy_labels, y=distribution)
         ax.set_ylabel('frequency', fontsize=15)
