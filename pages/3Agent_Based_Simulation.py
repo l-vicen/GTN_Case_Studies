@@ -24,7 +24,7 @@ allC = int(st.number_input('Insert number of Cooperator agents in the population
 allD = int(st.number_input('Insert number of Defector agents in the population', value=40))
 allRandom = int(st.number_input('Insert number of Random agents in the populatiio', value=40))
 mu = st.number_input('Insert the Mutation Probability', value = 1e-1, format="%.2f")
-beta = st.number_input('Insert the Selection Strength', value = 1, format="%.2f")
+beta = st.number_input('Insert the Selection Strength', value = 1.0, format="%.2f")
 selected_payoff = st.selectbox("Select the desired payoff matrix representing a local model.", Macros.LOCAL_MODELS)
 rounds = 1
 
