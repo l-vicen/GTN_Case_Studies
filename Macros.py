@@ -4,17 +4,6 @@ STRATEGY_TYPES = ["Mask", "Dynamic Mask", "No Mask"]
 LOCAL_MODELS = ["None", "Basic Model", "Fine for not wearing masks", "Subsidies for wearing masks", "Low Medical Level", "High Medical Level"]
 NUMBER_STRATEGY_GAMES = ["2-Strategy Game", "3-Strategy Game"]
 
-TWO_STRATEGY_LUCAS_PAYOFF = np.array([
-       [3, 1.5], # Mask
-       [1.5, -3] # No Mask
-])
-
-LUCAS_THREE = np.array([
-       [3, 0, 1.5], # Mask
-       [6, 0.5, 0.75], # No Mask
-       [2, 0, 1], # Dyn. Mask
-])
-
 BASIC_MODEL_PAYOFF = np.array([
         [-1.25, -5.7, -3.35], # Mask 
         [ 25.3, -58.36, -14.18], # No Mask
@@ -51,5 +40,4 @@ LOCAL_MODEL_PAYOFF_DICT = {
     LOCAL_MODELS[3]: SUBSIDIES_MODEL_PAYOFF,
     LOCAL_MODELS[4]: LOW_MED_MODEL_PAYOFF,
     LOCAL_MODELS[5]: HIGH_MED_MODEL_PAYOFF,
-#     LOCAL_MODELS[6]: LUCAS_THREE
 }

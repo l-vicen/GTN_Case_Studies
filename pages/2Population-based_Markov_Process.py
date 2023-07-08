@@ -31,7 +31,7 @@ if (selected_payoff != "None"):
     plot = (simplex.draw_triangle()
                 .add_vertex_labels(Macros.STRATEGY_TYPES, epsilon_bottom=0.1, epsilon_top=0.03)
                 .draw_stationary_distribution(sd, alpha=1, shrink=0.5,edgecolors='gray', cmap='binary', shading='gouraud', zorder=0)
-                .draw_gradients(zorder=0, linewidth=1.5)
+                .draw_gradients(zorder=2, linewidth=1.5)
                 .add_colorbar(shrink=0.5))
     ax.axis('off')
     ax.set_aspect('equal')
