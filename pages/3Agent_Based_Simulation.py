@@ -63,7 +63,7 @@ for tick in ax.yaxis.get_major_ticks():
 st.pyplot(fig)
 
 st.markdown("### Strategy Distribution")
-distribution = evolver.estimate_strategy_distribution(10, int(1e7), int(1e3), 1, 1e-3)
+distribution = evolver.estimate_strategy_distribution(rounds, int(1e7), int(1e3), 1, 1e-3)
 figTwo, ax = plt.subplots(figsize=(8, 3))
 ax = sns.barplot(x=strategy_labels, y=distribution)
 ax.set_ylabel('frequency', fontsize=15)
