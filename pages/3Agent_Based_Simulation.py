@@ -43,7 +43,7 @@ if (selected_payoff != "None"):
         st.markdown("## Output")
 
         st.markdown("### Population Development over Generation")
-        st.inform("Here 1 single run has been considered.")
+        st.info("Here 1 single run has been considered.")
         evolver = egt.numerical.PairwiseComparisonNumerical(population, game, 1000)
         output = evolver.run(int(1e7), 1, 1e-3, [allC, allD, allRandom])
         colors = sns.color_palette("colorblind", len(strategies))
@@ -67,7 +67,7 @@ if (selected_payoff != "None"):
         st.pyplot(fig)
 
         st.markdown("### Strategy Distribution")
-        st.inform("Here 10 runs have been considered and the frequency is the average of them.")
+        st.info("Here 10 runs have been considered and the frequency is the average of them.")
         distribution = evolver.estimate_strategy_distribution(10, int(1e7), int(1e3), beta, mu)
         figTwo, ax = plt.subplots(figsize=(8, 3))
         ax = sns.barplot(x=strategy_labels, y=distribution)
