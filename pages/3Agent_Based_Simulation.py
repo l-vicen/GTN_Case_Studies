@@ -19,49 +19,107 @@ seed = egt.Random._seed
 st.markdown("# Agent-Based-Simulation")
 st.markdown("## Inputs")
 
-population = int(st.number_input('Insert Population Size', value=900))
-allC = int(st.number_input('Insert Number of Cooperator Agents in Population', value=300))
-allD = int(st.number_input('Insert Number of Defectors Agents in Population', value=300))
-allRandom = int(st.number_input('Insert Number of Random Behavior Agents in Population', value=300))
-rounds = int(st.number_input('Insert Number of Rounds', value=100))
+population = int(st.number_input('Insert Population Size', value=90))
+allC = int(st.number_input('Insert Number of Cooperator Agents in Population', value=30))
+allD = int(st.number_input('Insert Number of Defectors Agents in Population', value=30))
+allRandom = int(st.number_input('Insert Number of Random Behavior Agents in Population', value=30))
+rounds = int(st.number_input('Insert Number of Rounds', value=10))
 selected_payoff = st.selectbox("Select the desired payoff matrix representing a local model.", Macros.LOCAL_MODELS)
 
-if (selected_payoff != "None"): 
-    A = Macros.LOCAL_MODEL_PAYOFF_DICT[selected_payoff]
-    strategies = [Cooperator(), Defector(), Random()]
-    game = egt.games.NormalFormGame(rounds, A, strategies)
-    strategy_labels = [strategy.type().replace("NFGStrategies::", '') for strategy in strategies]
+A = Macros.LOCAL_MODEL_PAYOFF_DICT[selected_payoff]
+strategies = [Cooperator(), Defector(), Random()]
+game = egt.games.NormalFormGame(rounds, A, strategies)
+strategy_labels = [strategy.type().replace("NFGStrategies::", '') for strategy in strategies]
 
-    st.markdown("## Payoff Matrix")
-    st.write(A)
+st.markdown("## Payoff Matrix")
+st.write(A)
 
-    # st.write(game.expected_payoffs())
+# st.write(game.expected_payoffs())
 
-    st.markdown("---")
-    st.markdown("## Output")
+st.markdown("---")
+st.markdown("## Output")
 
-    st.markdown("### Population Development over Generation")
-    evolver = egt.numerical.PairwiseComparisonNumerical(population, game, 1000)
-    output = evolver.run(int(1e7), 1, 1e-3, [allC, allD, allRandom])
-    colors = sns.color_palette("colorblind", len(strategies))
-    plt.rc('axes', prop_cycle=(cycler('color', colors)))
-    fig, ax = plt.subplots(figsize=(10, 4))
-    lines = ax.plot(np.arange(1e7+1)[::50], output[::50]/population)
-    plt.setp(lines, linewidth=2)
-    ax.legend([s for s in strategy_labels], frameon=False, fontsize=12)
-    ax.set_ylabel('Population (%)', fontsize=15, fontweight='bold')
-    ax.set_xlabel('Generation', fontsize=15, fontweight='bold')
-    ax.set_xscale('log')
-    ax.set_xlim(1, 1e7)
-    ax.yaxis.set_minor_locator(AutoMinorLocator())
-    ax.tick_params(axis='x', which='both', direction='in', labelsize=15, width=2)
-    ax.tick_params(axis='y', which='both', direction='in', labelsize=15, width=2)
+st.markdown("### Population Development over Generation")
+evolver = egt.numerical.PairwiseComparisonNumerical(population, game, 1000)
+output = evolver.run(int(1e7), 1, 1e-3, [allC, allD, allRandom])
+colors = sns.color_palette("colorblind", len(strategies))
+plt.rc('axes', prop_cycle=(cycler('color', colors)))
+fig, ax = plt.subplots(figsize=(10, 4))
+lines = ax.plot(np.arange(1e7+1)[::50], output[::50]/population)
+plt.setp(lines, linewidth=2)
+ax.legend([s for s in strategy_labels], frameon=False, fontsize=12)
+ax.set_ylabel('Population (%)', fontsize=15, fontweight='bold')
+ax.set_xlabel('Generation', fontsize=15, fontweight='bold')
+ax.set_xscale('log')
+ax.set_xlim(1, 1e7)
+ax.yaxis.set_minor_locator(AutoMinorLocator())
+ax.tick_params(axis='x', which='both', direction='in', labelsize=15, width=2)
+ax.tick_params(axis='y', which='both', direction='in', labelsize=15, width=2)
 
-    for tick in ax.xaxis.get_major_ticks():
-        tick.label1.set_fontweight('bold')
-    for tick in ax.yaxis.get_major_ticks():
-        tick.label1.set_fontweight('bold')
-    st.pyplot(fig)
+for tick in ax.xaxis.get_major_ticks():
+    tick.label1.set_fontweight('bold')
+for tick in ax.yaxis.get_major_ticks():
+    tick.label1.set_fontweight('bold')
+st.pyplot(fig)
 
-else: 
-    st.warning("No local model has been chosen.")
+st.markdown("### Strategy Distribution")
+distribution = evolver.estimate_strategy_distribution(10, int(1e7), int(1e3), 1, 1e-3)
+figTwo, ax = plt.subplots(figsize=(8, 3))
+ax = sns.barplot(x=strategy_labels, y=distribution)
+ax.set_ylabel('frequency', fontsize=15)
+ax.tick_params(bottom = False, labelsize=15)
+sns.despine()
+st.pyplot(figTwo)
+
+# if (selected_payoff != "None"): 
+
+#    if st.button('Simulate'):
+#         A = Macros.LOCAL_MODEL_PAYOFF_DICT[selected_payoff]
+#         strategies = [Cooperator(), Defector(), Random()]
+#         game = egt.games.NormalFormGame(rounds, A, strategies)
+#         strategy_labels = [strategy.type().replace("NFGStrategies::", '') for strategy in strategies]
+
+#         st.markdown("## Payoff Matrix")
+#         st.write(A)
+
+#         # st.write(game.expected_payoffs())
+
+#         st.markdown("---")
+#         st.markdown("## Output")
+
+#         st.markdown("### Population Development over Generation")
+#         evolver = egt.numerical.PairwiseComparisonNumerical(population, game, 1000)
+#         output = evolver.run(int(1e9), 1, 1e-3, [allC, allD, allRandom])
+#         colors = sns.color_palette("colorblind", len(strategies))
+#         plt.rc('axes', prop_cycle=(cycler('color', colors)))
+#         fig, ax = plt.subplots(figsize=(10, 4))
+#         lines = ax.plot(np.arange(1e9+1)[::50], output[::50]/population)
+#         plt.setp(lines, linewidth=2)
+#         ax.legend([s for s in strategy_labels], frameon=False, fontsize=12)
+#         ax.set_ylabel('Population (%)', fontsize=15, fontweight='bold')
+#         ax.set_xlabel('Generation', fontsize=15, fontweight='bold')
+#         ax.set_xscale('log')
+#         ax.set_xlim(1, 1e7)
+#         ax.yaxis.set_minor_locator(AutoMinorLocator())
+#         ax.tick_params(axis='x', which='both', direction='in', labelsize=15, width=2)
+#         ax.tick_params(axis='y', which='both', direction='in', labelsize=15, width=2)
+
+#         for tick in ax.xaxis.get_major_ticks():
+#             tick.label1.set_fontweight('bold')
+#         for tick in ax.yaxis.get_major_ticks():
+#             tick.label1.set_fontweight('bold')
+#         st.pyplot(fig)
+
+#         st.markdown("### Strategy Distribution")
+#         distribution = evolver.estimate_strategy_distribution(10, int(1e7), int(1e3), 1, 1e-3)
+#         figTwo, ax = plt.subplots(figsize=(8, 3))
+#         ax = sns.barplot(x=strategy_labels, y=distribution)
+#         ax.set_ylabel('frequency', fontsize=15)
+#         ax.tick_params(bottom = False, labelsize=15)
+#         sns.despine()
+#         st.pyplot(figTwo)
+
+#    else:
+#         st.warning('Once the inputs are set, press "Simulate"')
+# else: 
+#     st.warning("No local model has been chosen.")
