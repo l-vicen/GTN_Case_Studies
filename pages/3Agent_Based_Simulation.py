@@ -67,7 +67,7 @@ if (selected_payoff != "None"):
         st.pyplot(fig)
 
         st.markdown("### Strategy Distribution")
-        distribution = evolver.estimate_strategy_distribution(10, int(1e7), int(1e3), 1, 0.1)
+        distribution = evolver.estimate_strategy_distribution(1, int(1e7), int(1e3), 1, 0.1)
         figTwo, ax = plt.subplots(figsize=(8, 3))
         ax = sns.barplot(x=strategy_labels, y=distribution)
         ax.set_ylabel('frequency', fontsize=15)
