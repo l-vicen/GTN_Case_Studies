@@ -1,5 +1,11 @@
+""" In this script, I create a model revolver such
+ that the code remains clean. It works as a global variable
+ storage.
+"""
+
 import numpy as np
 
+# Some list 
 STRATEGY_TYPES = ["Mask", "Dynamic Mask", "No Mask"]
 LOCAL_MODELS = ["None", "Basic Model", "Fine for not wearing masks", "Subsidies for wearing masks", "Low Medical Level", "High Medical Level"]
 NUMBER_STRATEGY_GAMES = ["2-Strategy Game", "3-Strategy Game"]
@@ -34,6 +40,7 @@ HIGH_MED_MODEL_PAYOFF = np.array([
         [13.12, -20.344, -2.672] # Dynamic Mask
 ])
 
+# Dictionary storying local model with associated payoff
 LOCAL_MODEL_PAYOFF_DICT = {
     LOCAL_MODELS[1]: BASIC_MODEL_PAYOFF,
     LOCAL_MODELS[2]: FINES_MODEL_PAYOFF,

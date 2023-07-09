@@ -23,7 +23,11 @@ if (selected_payoff != "None"):
     # Start of output section
     st.markdown("---")
     st.markdown("## Outputs")
+
+    # Creating Matplotlib figure
     fig, ax = plt.subplots(figsize=(10,8))
+    ax.axis('off')
+    ax.set_aspect('equal')
 
     # Calling function from EGTtools Tutorial that applies rep. dynamics and returns simplex, grad, etc ...
     simplex, gradient_function, roots, roots_xy, stability = plot_replicator_dynamics_in_simplex(A, ax=ax)
@@ -52,9 +56,6 @@ if (selected_payoff != "None"):
     # Transforming roots into readable coordinates
     transf = [[ "{0:.0%}".format(elem) if elem >= 0 else "0%" for elem in one_root ] for one_root in roots]
     
-    ax.axis('off')
-    ax.set_aspect('equal')
-
     # Create the third column based on the values of the first column
     encoded_column = ['Stable' if val == 1 else 'Unstable' if val == -1 else 'Saddle' for val in stability]
     list_of_tuples = [tuple(arr) for arr in transf]
@@ -85,9 +86,10 @@ if (selected_payoff != "None"):
             .draw_stationary_points(roots_xy, stability)
             .draw_gradients(zorder=2)
             .add_colorbar()
-            .draw_scatter_shadow(gradient_function, 1000, color='gray', marker='.', s=0.1) # Considered 1000 starting states instead of original value
+            .draw_scatter_shadow(gradient_function, 1000, color='gray', marker='.', s=0.1) 
+            # Considered 1000 starting states instead of original value
             )
-
+    
     # Displaying plot in app
     st.write("### Simplex")
     plt.xlim((-.05,1.05))
