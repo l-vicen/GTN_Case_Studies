@@ -27,8 +27,17 @@ if (selected_payoff != "None"):
     st.markdown("---")
     st.markdown("## Outputs")
     
+    # Defines the figure 
+    fig, ax = plt.subplots(figsize=(10,8))
+    ax.axis('off')
+    ax.set_aspect('equal')
+
     # Doing the heavy calculation of this approach by calling the implemented methods
-    simplex, gradient_function, game, evolver = plot_pairwise_comparison_rule_dynamics_in_simplex_without_roots(payoff_matrix = A, group_size = 2, population_size = population, beta = beta, ax=ax)
+    simplex, gradient_function, game, evolver = plot_pairwise_comparison_rule_dynamics_in_simplex_without_roots(payoff_matrix = A, 
+                                                                                                                group_size = 2,
+                                                                                                                population_size = population, 
+                                                                                                                beta = beta,
+                                                                                                                ax=ax)
     transitions = evolver.calculate_transition_matrix(beta=beta, mu=mu)
     sd = egt.utils.calculate_stationary_distribution(transitions.transpose())
     
@@ -49,13 +58,10 @@ if (selected_payoff != "None"):
                 .draw_gradients(zorder=2, linewidth=1.5)
                 .add_colorbar(shrink=0.5))
     
-    # Defines the figure 
-    fig, ax = plt.subplots(figsize=(10,8))
-    ax.axis('off')
-    ax.set_aspect('equal')
     plt.xlim((-.05,1.05))
     plt.ylim((-.02, simplex.top_corner + 0.05))
 
+    # Displaying plot in app
     st.markdown("## Simplex")
     st.pyplot(fig)
 
