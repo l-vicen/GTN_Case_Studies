@@ -1,11 +1,11 @@
 import streamlit as st
 
-st.title("GTN Case Study: Evolutionary Game Theory")
+st.markdown("### Using Evolutionary Game Theory to Understand Behavior Dynamics during the Covid-19 Pandemic")
+st.markdown("---")
 
-st.warning("Under Construction...")
+st.info("On this website we provide an interactive interface to interact Evolutionary Game Theory methods implemented by Domingos et al. (2023) in the open-source library EGTtools. For more information consult our paper.")
 
-st.write("Evolutionary methods are implemented through EGTTools Library")
-st.info(r"@misc{Fernandez2020,\
+st.warning(r"@misc{Fernandez2020,\
   author = {Fernández Domingos, Elias},\
   title = {EGTTools: Toolbox for Evolutionary Game Theory},\
   year = {2020},\
